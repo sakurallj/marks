@@ -1,5 +1,5 @@
 # marks
-用angular写的仿天猫菜单指令
+用angular写的仿天猫菜单指令，可添随意加标签
 #用法
 1.current-marks-json初始化已选标签
 2.lt-mark里会有一个隐藏的input customer-input-name 为 input 的name 默认为tags 

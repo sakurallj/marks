@@ -1,0 +1,106 @@
+<div class="mall-like-main">
+    <input type="hidden" name="{[{inputName}]}" value="{[{selectedMarksJsonStr}]}">
+
+    <table class="mall-like-main-title">
+        <tbody>
+            <tr>
+                <td class="mall-like-main-title-left">标签分类</td>
+                <td class="mall-like-main-title-right">
+                    <div class="marks-contaner">
+                        <div class="mark"  ng-repeat="(key,item)  in currentMarks">
+                            <span>{{item.name}}</span>
+                            <i class="glyphicon glyphicon-remove remove" ng-click="removeContainerMark(key)"></i>
+                        </div>
+                    </div>
+                    <i class="content-collapse glyphicon " ng-click="collapse()"
+                       ng-class="{true: 'glyphicon-chevron-up', false: 'glyphicon-chevron-down'}[isShowContent]">
+
+                    </i>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="mall-like-main-content-bg" ng-show="isShowContent">
+        <table class="mall-like-main-content">
+            <tbody>
+            <tr>
+                <td class="mall-like-main-content-left">
+                    <div class="mall-like-main-content-left-right-bg">
+                        <a class="mall-like-main-content-left-option  " href="javascript:;"
+                           ng-repeat="(key,item)  in marks"  ng-click="addMark($event)"
+                           ng-mouseover="mouseover(key)" ng-class="{true: 'active',
+                                false: ''}[item.isActive]" >
+                            {{item.name}}
+                        </a>
+                        <a class="mall-like-main-content-left-option" id="new-mark" href="javascript:;"
+                           ng-mouseover="mouseover('newMark')">
+                            <i class="glyphicon glyphicon-plus"></i>
+                        </a>
+                    </div>
+                </td>
+                <td class="mall-like-main-content-right">
+                    <div class="mall-like-main-content-right-content">
+                        <table class="mall-like-main-content-right-row"   ng-hide="isNewMark"
+                             ng-repeat="(key,item) in childMarks.child">
+                            <tbody>
+                                <tr>
+                                    <td class="mall-like-main-content-right-row-title"  ng-click="addMark($event,key)">
+                                        <a href="javascript:;">{{item.name}}</a>>
+                                    </td>
+                                    <td class="mall-like-main-content-right-row-content">
+                                    <a class="mall-like-main-content-right-row-content-option" href="javascript:;"
+                                       ng-repeat="(key1,item1) in item.child" ng-click="addMark($event,key,key1)">
+                                        {{item1.name}}
+                                    </a>
+                                    <a class="mall-like-main-content-right-row-content-option add"
+
+                                       href="javascript:;">
+                                        <i class="glyphicon glyphicon-plus add-icon" ng-click="newMarkChild($event)"></i>
+                                        <div class="add-input  " style="display: none">
+                                            <input type="text"  class="form-control" ng-model="$parent.newMark"
+                                                   placeholder="输入分类名称" maxlength="4">
+                                            <i class="glyphicon glyphicon-ok submit"
+                                               ng-click="submitNewMark('newChildMark',key)"></i>
+                                            <i class="glyphicon glyphicon-remove cancel"
+                                               ng-click="cancelNewMark('newChildMark')"></i>
+                                        </div>
+                                    </a>
+                                </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="mall-like-main-content-right-row"   ng-hide="isNewMark" >
+                            <div class="mall-like-main-content-right-row-title add">
+                                <i class="glyphicon glyphicon-plus add-icon"   ng-click="newMarkChild($event)"
+                                   ng-show="top.key"></i>
+                                <div class="add-input  " style="display: none">
+                                    <input type="text"  class="form-control" ng-model="newMark"
+                                           placeholder="输入分类名称"  maxlength="4">
+                                    <i class="glyphicon glyphicon-ok" ng-click="submitNewMark('newChildMark')"></i>
+                                    <i class="glyphicon glyphicon-remove" ng-click="cancelNewMark('newChildMark')"></i>
+                                </div>
+                            </div>
+                            <div class="mall-like-main-content-right-row-content">
+
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+                        <div class="form-horizontal"   ng-show="isNewMark">
+                            <div class="form-group" style="margin: 0;margin-bottom: 7px">
+                                <label for="inputEmail3" style="line-height: 35px;padding: 0;width: 80px;font-size: 13px;text-align: right">名称</label>
+                                <input style="margin-left: 15px" type="text" id="inputEmail3" class="form-control" ng-model="newMark"
+                                       placeholder="输入分类名称" maxlength="8">
+                            </div>
+                            <div class="form-group" style="margin: 0">
+                                <div style="padding-left: 97px">
+                                    <button type="button" class="btn btn-primary" ng-click="submitNewMark()">确定</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+        </table>
+    </div>
+</div>

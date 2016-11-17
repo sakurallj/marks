@@ -1,5 +1,5 @@
 # marks
-用angular写的仿天猫菜单指令，可添随意加标签，下载后直接打开index.html即可看到效果。
+用angular写的仿天猫侧边栏/菜单指令，可添随意加标签，下载后直接打开index.html即可看到效果。
 #用法
 
 1. current-marks-json初始化已选标签
